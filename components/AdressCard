@@ -1,0 +1,39 @@
+import React from "react";
+
+export default function AdressCard() {
+  return (
+    <>
+      <div className="Card m-5 p-2 w-64">
+        <div className="Image">
+          <img
+            className="w-full p-2"
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt=""
+          />
+        </div>
+        <div className="Info flex-col justify-start items-start flex">
+          <div className=" w-full justify-between items-start inline-flex">
+            <div className=" ">
+              <div className="text-zinc-700 text-lg font-bold leading-normal">
+                adresse.attributes.Nom
+              </div>
+            </div>
+            <div className="">
+              <div className="text-right text-orange-500 text-lg font-extrabold leading-normal">
+                adresse.attributes.Prix_moyen
+              </div>
+              <div className="text-right text-gray-400 text-xs font-medium leading-3">
+                budget moyen
+              </div>
+            </div>
+          </div>
+          <div className="justify-start items-start gap-2 inline-flex">
+            <img src="" alt="" className="" />
+
+            <p className="">adresse.attributes.Categorie</p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
