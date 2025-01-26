@@ -13,13 +13,14 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import events from "@/data/events.data";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 
 export default function EventPage() {
   {
     /* const router = useRouter(); */
   }
   const { id } = useParams();
-  const event = events.find((event) => event.id === parseInt(id));
+  const event = events.find((event) => event.id === parseInt(id as string));
 
   if (!event) {
     return <div>Event not found. Please check the URL.</div>;
@@ -41,7 +42,9 @@ export default function EventPage() {
               <CardTitle className="text-3xl mb-2">{event.title}</CardTitle>
               <CardDescription>{event.description}</CardDescription>
             </div>
-            <Button variant="primary">Register Now</Button>
+            <Button variant="default">
+              <Link href={`/event/${event.id}`}>view event</Link>
+            </Button>
           </div>
         </CardHeader>
         <CardContent>

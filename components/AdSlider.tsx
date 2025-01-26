@@ -29,17 +29,16 @@ export default function AdSlider() {
           <CarouselItem key={event.id}>
             <div className="p-1">
               <Card>
-                <CardContent className="flex aspect-video items-center justify-center p-6">
-                  <span className="text-3xl font-semibold z-100">
+                <CardContent className="flex aspect-video items-center justify-center">
+                  <span className="text-3xl font-semibold absolute z-100 text-white shadow-2xl">
                     {event.title}
                   </span>
-                  {/*
+
                   <img
                     src={event.image}
                     alt=""
-                    className="absolute w-full bg-gradient-to-b from-transparent to-white"
+                    className="w-full bg-gradient-to-b from-transparent to-white"
                   />
-                  */}
                 </CardContent>
               </Card>
             </div>

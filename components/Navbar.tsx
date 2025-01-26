@@ -1,8 +1,10 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Search, Menu } from "lucide-react";
 import Link from "next/link";
+//import {  Popover,  PopoverContent,  PopoverTrigger} from "@/components/ui/popover";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   return (
@@ -26,13 +28,31 @@ export default function Navbar() {
             />
           </div>
         </div>
+
         <div className="flex items-center space-x-4">
-          <Avatar>
-            <Link href="/profile">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            </Link>
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+
+          {/*
+               <Popover>
+            <PopoverTrigger>
+              <Avatar>
+                <Link href="/profile">
+                  <AvatarImage
+                    src="https://github.com/shadcn.png"
+                    alt="@shadcn"
+                  />
+                </Link>
+                <AvatarFallback>??</AvatarFallback>
+              </Avatar> 
+              </PopoverTrigger>
+            <PopoverContent>Place content for the popover here.</PopoverContent>
+          </Popover>
+              */}
         </div>
       </div>
     </nav>

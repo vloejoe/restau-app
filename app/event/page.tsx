@@ -11,6 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import events from "@/data/events.data";
+import Image from "next/image";
 
 export default function EventPage() {
   return (
@@ -20,8 +21,8 @@ export default function EventPage() {
           className="container mx-auto max-w-lg py-8 flex flex-col gap-4"
           key={event.id}
         >
-          <Card key={event.id}>
-            <img
+          <Card>
+            <Image
               src={event.image}
               alt={event.title}
               width={800}

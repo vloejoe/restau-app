@@ -62,7 +62,6 @@ const authOptions: NextAuthOptions = {
       }
       return token;
     },
-
     // Inclure le rôle dans la session
     async session({ session, token }) {
       if (token) {
@@ -72,7 +71,6 @@ const authOptions: NextAuthOptions = {
       }
       return session;
     },
-
     // Redirection conditionnelle en fonction du rôle
     async redirect({
       baseUrl,
@@ -87,17 +85,16 @@ const authOptions: NextAuthOptions = {
         return baseUrl;
       }
 
-      const role = token?.role;
+      const role = token?.role as string;
 
       if (role === "ADMIN") {
         return "/admin";
       }
 
-      return "/profile";
+      return "/admin";
     },
   },
 };
 
-// Exporter le handler
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST, authOptions };
+export { handler as GET, handler as POST };
