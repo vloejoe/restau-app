@@ -1,47 +1,35 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-// Liste des credentials pour la phase de test
-const credentials = {
-  admin: "aj@next.com",
-  user: "123",
-};
-
-export default function AdminLogin() {
+export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
-
-  const handleTestLogin = (role: keyof typeof credentials) => {
-    // Remplir les champs avec les credentials prédéfinis
-    setUsername(role);
-    setPassword(credentials[role]);
-  };
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+
     const result = await signIn("credentials", {
       username,
       password,
-      redirect: false,
+      redirect: true, // Redirection gérée par NextAuth
     });
 
-    if (result?.ok) {
-      router.push("/admin");
-    } else {
-      console.error("Login failed");
+    if (result?.error) {
+      setError("Invalid username or password");
     }
   };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-3xl font-bold mb-8">Admin Login</h1>
+      <h1 className="text-3xl font-bold mb-8">Login</h1>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <Label htmlFor="username">Username</Label>
@@ -64,11 +52,6 @@ export default function AdminLogin() {
         </div>
         <Button type="submit">Login</Button>
       </form>
-      {/* Boutons pour tester les utilisateurs prédéfinis */}
-      <div className="mt-4 space-x-4">
-        <Button onClick={() => handleTestLogin("admin")}>Login as Admin</Button>
-        <Button onClick={() => handleTestLogin("user")}>Login as User</Button>
-      </div>
     </div>
   );
 }

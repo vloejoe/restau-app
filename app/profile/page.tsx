@@ -1,16 +1,19 @@
-import { getServerSession } from "next-auth/next"
-import { redirect } from "next/navigation"
-import { authOptions } from "../api/auth/[...nextauth]/route"
-import { getUserReviews } from "@/lib/reviews"
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { getUserReviews } from "@/lib/reviews";
 
 export default async function ProfilePage() {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/login")
+    redirect("/login");
+  }
+  if (session.user.role === "ADMIN") {
+    redirect("/admin");
   }
 
-  const reviews = await getUserReviews(session.user.id)
+  const reviews = await getUserReviews(session.user.id);
 
   return (
     <div className="p-8">
@@ -25,6 +28,5 @@ export default async function ProfilePage() {
         </div>
       ))}
     </div>
-  )
+  );
 }
-

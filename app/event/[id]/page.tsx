@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,10 +12,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import events from "@/data/events.data";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 
 export default function EventPage() {
-  const router = useRouter();
+  {
+    /* const router = useRouter(); */
+  }
   const { id } = useParams();
   const event = events.find((event) => event.id === parseInt(id));
 
